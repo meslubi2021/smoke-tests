@@ -11,7 +11,7 @@ input:
             provider: github
             repo: dependabot/smoke-tests
             directory: /nuget/lockfiles
-            commit: bf7adea22a2d03d94a3245f1a7f69353623ee333
+            commit: 29527ae1c9b1d747548885d065e020fac4cbdc9a
         credentials-metadata:
             - host: github.com
               type: git_source
@@ -20,3 +20,160 @@ input:
           password: $LOCAL_GITHUB_ACCESS_TOKEN
           type: git_source
           username: x-access-token
+output:
+    - type: update_dependency_list
+      expect:
+        data:
+            dependencies:
+                - name: Azure.Bicep.Core
+                  requirements:
+                    - file: project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 0.11.1
+                      source: null
+                  version: 0.11.1
+            dependency_files:
+                - /nuget/lockfiles/project.csproj
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 29527ae1c9b1d747548885d065e020fac4cbdc9a
+            dependencies:
+                - name: Azure.Bicep.Core
+                  previous-requirements:
+                    - file: project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 0.11.1
+                      source: null
+                  previous-version: 0.11.1
+                  requirements:
+                    - file: project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 0.21.1
+                      source:
+                        nuspec_url: https://api.nuget.org/v3-flatcontainer/azure.bicep.core/0.21.1/azure.bicep.core.nuspec
+                        source_url: null
+                        type: nuget_repo
+                        url: https://api.nuget.org/v3/index.json
+                  version: 0.21.1
+            updated-dependency-files:
+                - content: |-
+                    <Project Sdk="Microsoft.NET.Sdk">
+                      <PropertyGroup>
+                        <TargetFramework>net6.0</TargetFramework>
+                      </PropertyGroup>
+
+                      <ItemGroup>
+                        <PackageReference Include="Azure.Bicep.Core" Version="0.21.1" />
+                      </ItemGroup>
+                    </Project>
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /nuget/lockfiles
+                  name: project.csproj
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump Azure.Bicep.Core from 0.11.1 to 0.21.1 in /nuget/lockfiles
+            pr-body: |
+                Bumps [Azure.Bicep.Core](https://github.com/Azure/bicep) from 0.11.1 to 0.21.1.
+                <details>
+                <summary>Release notes</summary>
+                <p><em>Sourced from <a href="https://github.com/Azure/bicep/releases">Azure.Bicep.Core's releases</a>.</em></p>
+                <blockquote>
+                <h2>v0.21.1</h2>
+                <h2>Highlights</h2>
+                <p>Bicep Team:</p>
+                <ul>
+                <li>User-Defined Types are <strong>no longer experimental</strong>!
+                <ul>
+                <li>Usage documentation is available <a href="https://learn.microsoft.com/azure/azure-resource-manager/bicep/user-defined-data-types">here</a>.</li>
+                </ul>
+                </li>
+                <li>Add support for defining and emitting user defined discriminated object union types. (<a href="https://redirect.github.com/Azure/bicep/issues/11222">#11222</a>)</li>
+                <li>Support variables in .bicepparam files (<a href="https://redirect.github.com/Azure/bicep/issues/11438">#11438</a>)</li>
+                <li>Added <code>validate-params</code> command to .bicepparams (<a href="https://redirect.github.com/Azure/bicep/issues/11476">#11476</a>)</li>
+                <li>[EXPERIMENTAL] Compile-time type imports (<a href="https://redirect.github.com/Azure/bicep/issues/11298">#11298</a>)</li>
+                <li>[EXPERIMENTAL] Test Framework:
+                <ul>
+                <li>Evaluate Assertions And Display Test Results On CLI (<a href="https://redirect.github.com/Azure/bicep/issues/11370">#11370</a>)</li>
+                <li>Added Type Validation and Autocomplete Snippets (<a href="https://redirect.github.com/Azure/bicep/issues/11477">#11477</a>)</li>
+                </ul>
+                </li>
+                </ul>
+                <h2>Features and Bug Fixes</h2>
+                <p>Bicep Team:</p>
+                <ul>
+                <li>Support for user-defined types and inline type declarations in user defined functions (<a href="https://redirect.github.com/Azure/bicep/issues/11571">#11571</a>)</li>
+                <li>Fix bicepparam decompiler date handling (<a href="https://redirect.github.com/Azure/bicep/issues/11675">#11675</a>)</li>
+                <li>Symbolic names: Generate dependsOn for &quot;existing&quot; resources (<a href="https://redirect.github.com/Azure/bicep/issues/11478">#11478</a>)</li>
+                <li>Fix 10427 trigger next module completions (<a href="https://redirect.github.com/Azure/bicep/issues/11573">#11573</a>)</li>
+                <li>Fix pretty-printing for safe dereference operators (<a href="https://redirect.github.com/Azure/bicep/issues/11575">#11575</a>)</li>
+                <li>Allow param assignments to use <code>null</code> values (<a href="https://redirect.github.com/Azure/bicep/issues/11532">#11532</a>)</li>
+                <li>Catch case-insensitive clashes of type property names (<a href="https://redirect.github.com/Azure/bicep/issues/11457">#11457</a>)</li>
+                </ul>
+                <p><a href="https://github.com/johan-lindqvist"><code>@​johan-lindqvist</code></a></p>
+                <ul>
+                <li>Bicep lint command (<a href="https://redirect.github.com/Azure/bicep/issues/10819">#10819</a>)</li>
+                </ul>
+                <p><a href="https://github.com/pragone"><code>@​pragone</code></a></p>
+                <ul>
+                <li>Fixed typos in class names in BannedSymbols.txt (<a href="https://redirect.github.com/Azure/bicep/issues/11473">#11473</a>)</li>
+                </ul>
+                <p><a href="https://github.com/petertrr"><code>@​petertrr</code></a></p>
+                <ul>
+                <li>Update <code>grammar.md</code>: double-colon is used for nested resource access (<a href="https://redirect.github.com/Azure/bicep/issues/11468">#11468</a>)</li>
+                </ul>
+                <h2>v0.20.4</h2>
+                <h2>Highlights</h2>
+                <p>Bicep Team:</p>
+                <ul>
+                <li>New Deployment Pane UI (Experimental). Documentation <a href="https://github.com/Azure/bicep/blob/main/docs/deploy-ui.md">here</a>.</li>
+                <li>adding <code>az.getSecret()</code> support to bicepparam files (<a href="https://redirect.github.com/Azure/bicep/issues/11236">#11236</a>)
+                <ul>
+                <li>example: <code>param mySecret = az.getSecret('e93d3ee6-fac1-412f-92d6-bfb379e81af2', 'my-rg', 'mykeyvault', 'mySecret')</code></li>
+                </ul>
+                </li>
+                </ul>
+                <h2>Bug Fixes and Features</h2>
+                <p>Bicep Team:</p>
+                <ul>
+                <li>Make decorators order independent (<a href="https://redirect.github.com/Azure/bicep/issues/11380">#11380</a>)</li>
+                <li>Fixes &quot;Paste removes comments inside multi-line array&quot; (<a href="https://redirect.github.com/Azure/bicep/issues/11297">#11297</a>)</li>
+                <li>Fix hover with escaped chars in published doclink (<a href="https://redirect.github.com/Azure/bicep/issues/11365">#11365</a>)</li>
+                </ul>
+                <!-- raw HTML omitted -->
+                </blockquote>
+                <p>... (truncated)</p>
+                </details>
+                <details>
+                <summary>Commits</summary>
+                <ul>
+                <li><a href="https://github.com/Azure/bicep/commit/d4acbd2a9f47281340d1315e1b6e4bbfb9c4e257"><code>d4acbd2</code></a> Bump Bicep Version for 0.21 Release (<a href="https://redirect.github.com/Azure/bicep/issues/11749">#11749</a>)</li>
+                <li><a href="https://github.com/Azure/bicep/commit/419ebbdef11748f91a34a2003690028019e763dd"><code>419ebbd</code></a> Bump Azure.Bicep.Types.Az version for 0.21 release  (<a href="https://redirect.github.com/Azure/bicep/issues/11740">#11740</a>)</li>
+                <li><a href="https://github.com/Azure/bicep/commit/f186f4a9072495a401f09ca08b7da4ce5cec1072"><code>f186f4a</code></a> Be more forwards compat w/module restoring (<a href="https://redirect.github.com/Azure/bicep/issues/11680">#11680</a>)</li>
+                <li><a href="https://github.com/Azure/bicep/commit/4565a7e4315b0a580244cda565b9f0272fcf4e6d"><code>4565a7e</code></a> RENAME: IForeignArtifactReference to IArtifactReferenceSyntax (<a href="https://redirect.github.com/Azure/bicep/issues/11741">#11741</a>)</li>
+                <li><a href="https://github.com/Azure/bicep/commit/b55b871fae000bb980aa64d34270e5d73c77eb6c"><code>b55b871</code></a> Emit warnings for refinement violations within resource bodies (<a href="https://redirect.github.com/Azure/bicep/issues/11743">#11743</a>)</li>
+                <li><a href="https://github.com/Azure/bicep/commit/9b65fc03fb134ac03cb7d91e852dd0ae6ba6dac9"><code>9b65fc0</code></a> Bump <code>@​typescript-eslint/parser</code> from 6.4.1 to 6.6.0 in /src/vscode-bicep (<a href="https://redirect.github.com/Azure/bicep/issues/11736">#11736</a>)</li>
+                <li><a href="https://github.com/Azure/bicep/commit/38de80863bad8c278b92ac77976d69a5ad2456cf"><code>38de808</code></a> Bump JsonPath.Net from 0.6.3 to 0.6.5 (<a href="https://redirect.github.com/Azure/bicep/issues/11705">#11705</a>)</li>
+                <li><a href="https://github.com/Azure/bicep/commit/e44479929d5ea5ae28844f6397d22483c5ecba17"><code>e444799</code></a> Bump jest and <code>@​types/jest</code> in /src/monarch (<a href="https://redirect.github.com/Azure/bicep/issues/11721">#11721</a>)</li>
+                <li><a href="https://github.com/Azure/bicep/commit/db4b27674620a06b6477a92155e5efc38ec6d0e4"><code>db4b276</code></a> Bump prettier from 3.0.2 to 3.0.3 in /src/Bicep.MSBuild.E2eTests (<a href="https://redirect.github.com/Azure/bicep/issues/11725">#11725</a>)</li>
+                <li><a href="https://github.com/Azure/bicep/commit/034cd09fa1829385930c43c560f4420cd6e9fd06"><code>034cd09</code></a> Bump <code>@​typescript-eslint/parser</code> from 6.4.0 to 6.6.0 in /src/monarch (<a href="https://redirect.github.com/Azure/bicep/issues/11737">#11737</a>)</li>
+                <li>Additional commits viewable in <a href="https://github.com/Azure/bicep/compare/v0.11.1...v0.21.1">compare view</a></li>
+                </ul>
+                </details>
+                <br />
+            commit-message: |-
+                Bump Azure.Bicep.Core from 0.11.1 to 0.21.1 in /nuget/lockfiles
+
+                Bumps [Azure.Bicep.Core](https://github.com/Azure/bicep) from 0.11.1 to 0.21.1.
+                - [Release notes](https://github.com/Azure/bicep/releases)
+                - [Changelog](https://github.com/Azure/bicep/blob/main/docs/release-checklist.md)
+                - [Commits](https://github.com/Azure/bicep/compare/v0.11.1...v0.21.1)
+    - type: mark_as_processed
+      expect:
+        data:
+            base-commit-sha: 29527ae1c9b1d747548885d065e020fac4cbdc9a
