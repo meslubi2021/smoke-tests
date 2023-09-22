@@ -3,10 +3,7 @@ input:
         package-manager: nuget
         allowed-updates:
             - update-type: all
-        ignore-conditions:
-            - dependency-name: NuGet.Versioning
-              source: tests/smoke-nuget.yaml
-              version-requirement: '>6.2.2'
+        ignore-conditions: []
         source:
             provider: github
             repo: dependabot/smoke-tests
