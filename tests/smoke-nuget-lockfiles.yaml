@@ -8,7 +8,7 @@ input:
             provider: github
             repo: dependabot/smoke-tests
             directory: /nuget/lockfiles
-            commit: 5741e8aea81d1b77e71f44212868e633e0dcf0df
+            commit: 9293f556185a1e21ce0cff72ac7609a068d22ed9
         credentials-metadata:
             - host: github.com
               type: git_source
