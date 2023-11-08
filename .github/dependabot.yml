@@ -7,5 +7,6 @@ updates:
     groups:
       npm-dependencies:
         patterns:
-          - "lodash*"
+          - ^@lodash/.*
+          - ^lodash$
           
