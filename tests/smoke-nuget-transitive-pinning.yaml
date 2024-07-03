@@ -1,0 +1,117 @@
+input:
+    job:
+        package-manager: nuget
+        allowed-updates:
+            - update-type: all
+        dependencies:
+            - System.Text.Json
+        ignore-conditions:
+            - dependency-name: System.Text.Json
+              source: ./nuget/tests/transitive-pinning.yaml
+              version-requirement: '>5.0.2'
+        security-advisories:
+            - dependency-name: System.Text.Json
+              affected-versions:
+                - <= 5.0.1
+              patched-versions:
+                - 5.0.2
+              unaffected-versions: []
+        security-updates-only: true
+        source:
+            provider: github
+            repo: dependabot/smoke-tests
+            directory: /nuget/transitive-pinning
+            commit: 7dbbef7b02f40ddfa7d32fc3099caf19f370bb9b
+    credentials:
+        - host: github.com
+          password: $LOCAL_GITHUB_ACCESS_TOKEN
+          type: git_source
+          username: x-access-token
+output:
+    - type: update_dependency_list
+      expect:
+        data:
+            dependencies:
+                - name: DnsClient
+                  requirements: []
+                  version: 1.4.0
+                - name: Microsoft.Extensions.Logging.Abstractions
+                  requirements: []
+                  version: 5.0.0
+                - name: Mongo2Go
+                  requirements:
+                    - file: project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 3.1.3
+                      source: null
+                    - file: Directory.Packages.props
+                      groups:
+                        - dependencies
+                      requirement: 3.1.3
+                      source: null
+                  version: 3.1.3
+                - name: MongoDB.Bson
+                  requirements: []
+                  version: 2.12.0
+                - name: MongoDB.Driver
+                  requirements: []
+                  version: 2.12.0
+                - name: MongoDB.Driver.Core
+                  requirements: []
+                  version: 2.12.0
+                - name: MongoDB.LibMongocrypt
+                  requirements: []
+                  version: 1.2.0
+                - name: SharpCompress
+                  requirements: []
+                  version: 0.23.0
+                - name: System.Runtime.CompilerServices.Unsafe
+                  requirements: []
+                  version: 5.0.0
+                - name: System.Text.Json
+                  requirements: []
+                  version: 5.0.1
+            dependency_files:
+                - /nuget/transitive-pinning/project.csproj
+                - /nuget/transitive-pinning/Directory.Packages.props
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 7dbbef7b02f40ddfa7d32fc3099caf19f370bb9b
+            dependencies:
+                - name: System.Text.Json
+                  previous-requirements: []
+                  previous-version: 5.0.1
+                  requirements: []
+                  version: 5.0.2
+            updated-dependency-files:
+                - content: |-
+                    <Project>
+                      <PropertyGroup>
+                        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+                        <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+                      </PropertyGroup>
+                      <ItemGroup>
+                        <PackageVersion Include="Mongo2Go" Version="3.1.3" />
+                        <PackageVersion Include="System.Text.Json" Version="5.0.2" />
+                      </ItemGroup>
+                    </Project>
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /nuget/transitive-pinning
+                  name: Directory.Packages.props
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump System.Text.Json from 5.0.1 to 5.0.2 in /nuget/transitive-pinning
+            pr-body: |
+                Bumps System.Text.Json from 5.0.1 to 5.0.2.
+            commit-message: |-
+                Bump System.Text.Json from 5.0.1 to 5.0.2 in /nuget/transitive-pinning
+
+                Bumps System.Text.Json from 5.0.1 to 5.0.2.
+    - type: mark_as_processed
+      expect:
+        data:
+            base-commit-sha: 7dbbef7b02f40ddfa7d32fc3099caf19f370bb9b

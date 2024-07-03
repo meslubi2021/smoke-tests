@@ -1,0 +1,404 @@
+input:
+    job:
+        package-manager: nuget
+        allowed-updates:
+            - update-type: all
+        dependencies:
+            - Microsoft.VisualStudio.Sdk.TestFramework.Xunit
+        ignore-conditions:
+            - dependency-name: Microsoft.VisualStudio.Sdk.TestFramework.Xunit
+              source: tests/potential-downgrade.yaml
+              version-requirement: '>17.6.16'
+        security-advisories:
+            - dependency-name: Microsoft.VisualStudio.Sdk.TestFramework.Xunit
+              affected-versions:
+                - <= 17.3.23
+              patched-versions:
+                - 17.6.0
+              unaffected-versions: []
+        security-updates-only: true
+        source:
+            provider: github
+            repo: dependabot/smoke-tests
+            directory: /nuget/potential-downgrade
+            commit: c28157d6e1e0304bbde1ae81227f5a789033fe9d
+    credentials:
+        - host: github.com
+          password: $LOCAL_GITHUB_ACCESS_TOKEN
+          type: git_source
+          username: x-access-token
+output:
+    - type: update_dependency_list
+      expect:
+        data:
+            dependencies:
+                - name: Castle.Core
+                  requirements: []
+                  version: 5.1.0
+                - name: MessagePack
+                  requirements: []
+                  version: 2.3.85
+                - name: MessagePack.Annotations
+                  requirements: []
+                  version: 2.3.85
+                - name: Microsoft.Bcl.AsyncInterfaces
+                  requirements: []
+                  version: 6.0.0
+                - name: Microsoft.Build.Framework
+                  requirements: []
+                  version: 17.1.0
+                - name: Microsoft.CodeAnalysis.BannedApiAnalyzers
+                  requirements: []
+                  version: 3.3.2
+                - name: Microsoft.CodeCoverage
+                  requirements: []
+                  version: 17.6.3
+                - name: Microsoft.NET.Test.Sdk
+                  requirements:
+                    - file: project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 17.6.3
+                      source: null
+                    - file: Directory.Packages.props
+                      groups:
+                        - dependencies
+                      requirement: 17.6.3
+                      source: null
+                  version: 17.6.3
+                - name: Microsoft.ServiceHub.Analyzers
+                  requirements: []
+                  version: 3.1.4097
+                - name: Microsoft.ServiceHub.Client
+                  requirements: []
+                  version: 3.1.4097
+                - name: Microsoft.ServiceHub.Framework
+                  requirements: []
+                  version: 3.1.4097
+                - name: Microsoft.ServiceHub.Resources
+                  requirements: []
+                  version: 3.1.4097
+                - name: Microsoft.TestPlatform.ObjectModel
+                  requirements: []
+                  version: 17.6.3
+                - name: Microsoft.TestPlatform.TestHost
+                  requirements: []
+                  version: 17.6.3
+                - name: Microsoft.VisualStudio.ComponentModelHost
+                  requirements: []
+                  version: 17.2.3194
+                - name: Microsoft.VisualStudio.Composition
+                  requirements: []
+                  version: 17.2.41
+                - name: Microsoft.VisualStudio.Composition.Analyzers
+                  requirements: []
+                  version: 17.2.41
+                - name: Microsoft.VisualStudio.GraphModel
+                  requirements: []
+                  version: 17.2.32505.113
+                - name: Microsoft.VisualStudio.ImageCatalog
+                  requirements: []
+                  version: 17.2.32505.113
+                - name: Microsoft.VisualStudio.Imaging
+                  requirements: []
+                  version: 17.2.32505.113
+                - name: Microsoft.VisualStudio.Imaging.Interop.14.0.DesignTime
+                  requirements: []
+                  version: 17.2.32505.113
+                - name: Microsoft.VisualStudio.Interop
+                  requirements: []
+                  version: 17.2.32505.113
+                - name: Microsoft.VisualStudio.ProjectAggregator
+                  requirements: []
+                  version: 17.2.32505.113
+                - name: Microsoft.VisualStudio.RemoteControl
+                  requirements: []
+                  version: 16.3.44
+                - name: Microsoft.VisualStudio.RpcContracts
+                  requirements: []
+                  version: 17.2.31
+                - name: Microsoft.VisualStudio.SDK.Analyzers
+                  requirements: []
+                  version: 16.10.10
+                - name: Microsoft.VisualStudio.Sdk.TestFramework
+                  requirements:
+                    - file: project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 17.2.7
+                      source: null
+                    - file: Directory.Packages.props
+                      groups:
+                        - dependencies
+                      requirement: 17.2.7
+                      source: null
+                  version: 17.2.7
+                - name: Microsoft.VisualStudio.Sdk.TestFramework.Xunit
+                  requirements:
+                    - file: project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 17.2.7
+                      source: null
+                    - file: Directory.Packages.props
+                      groups:
+                        - dependencies
+                      requirement: 17.2.7
+                      source: null
+                  version: 17.2.7
+                - name: Microsoft.VisualStudio.Shell.15.0
+                  requirements:
+                    - file: Directory.Packages.props
+                      groups:
+                        - dependencies
+                      requirement: 17.6.36389
+                      source: null
+                  version: 17.6.36389
+                - name: Microsoft.VisualStudio.Shell.Framework
+                  requirements: []
+                  version: 17.2.32505.113
+                - name: Microsoft.VisualStudio.Telemetry
+                  requirements: []
+                  version: 16.4.56
+                - name: Microsoft.VisualStudio.Threading
+                  requirements: []
+                  version: 17.2.32
+                - name: Microsoft.VisualStudio.Threading.Analyzers
+                  requirements: []
+                  version: 17.2.32
+                - name: Microsoft.VisualStudio.Utilities
+                  requirements: []
+                  version: 17.2.32505.113
+                - name: Microsoft.VisualStudio.Utilities.Internal
+                  requirements: []
+                  version: 16.3.36
+                - name: Microsoft.VisualStudio.Utilities.Testing
+                  requirements: []
+                  version: 17.2.32505.113
+                - name: Microsoft.VisualStudio.Validation
+                  requirements: []
+                  version: 17.0.53
+                - name: Microsoft.Win32.SystemEvents
+                  requirements: []
+                  version: 5.0.0
+                - name: Moq
+                  requirements:
+                    - file: project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 4.18.2
+                      source: null
+                    - file: Directory.Packages.props
+                      groups:
+                        - dependencies
+                      requirement: 4.18.2
+                      source: null
+                  version: 4.18.2
+                - name: Nerdbank.Streams
+                  requirements: []
+                  version: 2.8.57
+                - name: Newtonsoft.Json
+                  requirements: []
+                  version: 13.0.1
+                - name: NuGet.Frameworks
+                  requirements: []
+                  version: 6.5.0
+                - name: StreamJsonRpc
+                  requirements: []
+                  version: 2.11.35
+                - name: System.CodeDom
+                  requirements: []
+                  version: 5.0.0
+                - name: System.ComponentModel.Composition
+                  requirements: []
+                  version: 6.0.0
+                - name: System.Composition.AttributedModel
+                  requirements: []
+                  version: 6.0.0
+                - name: System.Composition.Convention
+                  requirements: []
+                  version: 6.0.0
+                - name: System.Composition.Hosting
+                  requirements: []
+                  version: 6.0.0
+                - name: System.Composition.Runtime
+                  requirements: []
+                  version: 6.0.0
+                - name: System.Composition.TypedParts
+                  requirements: []
+                  version: 6.0.0
+                - name: System.Configuration.ConfigurationManager
+                  requirements: []
+                  version: 5.0.0
+                - name: System.Diagnostics.EventLog
+                  requirements: []
+                  version: 6.0.0
+                - name: System.Diagnostics.PerformanceCounter
+                  requirements: []
+                  version: 5.0.1
+                - name: System.Drawing.Common
+                  requirements: []
+                  version: 5.0.0
+                - name: System.IO.Pipelines
+                  requirements: []
+                  version: 6.0.1
+                - name: System.Management
+                  requirements: []
+                  version: 5.0.0
+                - name: System.Security.Cryptography.ProtectedData
+                  requirements: []
+                  version: 5.0.0
+                - name: System.Security.Permissions
+                  requirements: []
+                  version: 5.0.0
+                - name: System.Text.Json
+                  requirements: []
+                  version: 6.0.0
+                - name: System.Threading.AccessControl
+                  requirements: []
+                  version: 6.0.0
+                - name: System.Windows.Extensions
+                  requirements: []
+                  version: 5.0.0
+                - name: Validation
+                  requirements: []
+                  version: 2.4.18
+                - name: xunit
+                  requirements:
+                    - file: project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.5.0
+                      source: null
+                    - file: Directory.Packages.props
+                      groups:
+                        - dependencies
+                      requirement: 2.5.0
+                      source: null
+                  version: 2.5.0
+                - name: xunit.abstractions
+                  requirements: []
+                  version: 2.0.3
+                - name: xunit.analyzers
+                  requirements: []
+                  version: 1.2.0
+                - name: xunit.assert
+                  requirements: []
+                  version: 2.5.0
+                - name: xunit.extensibility.core
+                  requirements: []
+                  version: 2.5.0
+                - name: xunit.extensibility.execution
+                  requirements: []
+                  version: 2.5.0
+                - name: xunit.runner.visualstudio
+                  requirements:
+                    - file: project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 2.5.0
+                      source: null
+                    - file: Directory.Packages.props
+                      groups:
+                        - dependencies
+                      requirement: 2.5.0
+                      source: null
+                  version: 2.5.0
+                - name: Xunit.SkippableFact
+                  requirements: []
+                  version: 1.4.13
+                - name: Microsoft.VisualStudio.Text.Data
+                  requirements:
+                    - file: Directory.Packages.props
+                      groups:
+                        - dependencies
+                      requirement: 17.6.268
+                      source: null
+                  version: 17.6.268
+            dependency_files:
+                - /nuget/potential-downgrade/project.csproj
+                - /nuget/potential-downgrade/Directory.Packages.props
+                - /nuget/potential-downgrade/Directory.Build.props
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: c28157d6e1e0304bbde1ae81227f5a789033fe9d
+            dependencies:
+                - name: Microsoft.VisualStudio.Sdk.TestFramework.Xunit
+                  previous-requirements:
+                    - file: project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 17.2.7
+                      source: null
+                    - file: Directory.Packages.props
+                      groups:
+                        - dependencies
+                      requirement: 17.2.7
+                      source: null
+                  previous-version: 17.2.7
+                  requirements:
+                    - file: project.csproj
+                      groups:
+                        - dependencies
+                      requirement: 17.6.16
+                      source:
+                        nuspec_url: https://api.nuget.org/v3-flatcontainer/microsoft.visualstudio.sdk.testframework.xunit/17.6.16/microsoft.visualstudio.sdk.testframework.xunit.nuspec
+                        source_url: null
+                        type: nuget_repo
+                        url: https://api.nuget.org/v3/index.json
+                    - file: Directory.Packages.props
+                      groups:
+                        - dependencies
+                      requirement: 17.6.16
+                      source:
+                        nuspec_url: https://api.nuget.org/v3-flatcontainer/microsoft.visualstudio.sdk.testframework.xunit/17.6.16/microsoft.visualstudio.sdk.testframework.xunit.nuspec
+                        source_url: null
+                        type: nuget_repo
+                        url: https://api.nuget.org/v3/index.json
+                  version: 17.6.16
+            updated-dependency-files:
+                - content: |
+                    <Project>
+                      <PropertyGroup>
+                        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+                        <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+                      </PropertyGroup>
+                      <ItemGroup>
+                        <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
+                        <PackageVersion Include="Microsoft.VisualStudio.Sdk.TestFramework" Version="17.6.16" />
+                        <PackageVersion Include="Microsoft.VisualStudio.Sdk.TestFramework.Xunit" Version="17.6.16" />
+                        <PackageVersion Include="Microsoft.VisualStudio.Shell.15.0" Version="17.6.36389" />
+                        <PackageVersion Include="Microsoft.VisualStudio.Text.Data" Version="17.6.268" />
+                        <PackageVersion Include="Moq" Version="4.18.4" />
+                        <PackageVersion Include="xunit" Version="2.5.0" />
+                        <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.0" />
+                      </ItemGroup>
+                    </Project>
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /nuget/potential-downgrade
+                  name: Directory.Packages.props
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Bump Microsoft.VisualStudio.Sdk.TestFramework.Xunit from 17.2.7 to 17.6.16 in /nuget/potential-downgrade
+            pr-body: |
+                Bumps [Microsoft.VisualStudio.Sdk.TestFramework.Xunit](https://github.com/microsoft/vssdktestfx) from 17.2.7 to 17.6.16.
+                <details>
+                <summary>Commits</summary>
+                <ul>
+                <li>See full diff in <a href="https://github.com/microsoft/vssdktestfx/commits">compare view</a></li>
+                </ul>
+                </details>
+                <br />
+            commit-message: |-
+                Bump Microsoft.VisualStudio.Sdk.TestFramework.Xunit
+
+                Bumps [Microsoft.VisualStudio.Sdk.TestFramework.Xunit](https://github.com/microsoft/vssdktestfx) from 17.2.7 to 17.6.16.
+                - [Release notes](https://github.com/microsoft/vssdktestfx/releases)
+                - [Commits](https://github.com/microsoft/vssdktestfx/commits)
+    - type: mark_as_processed
+      expect:
+        data:
+            base-commit-sha: c28157d6e1e0304bbde1ae81227f5a789033fe9d
