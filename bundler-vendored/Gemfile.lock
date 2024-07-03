@@ -7,7 +7,7 @@ GEM
     parallel (1.22.1)
     parser (3.1.2.0)
       ast (~> 2.4.1)
-    rack (2.1.4)
+    rack (2.2.8.1)
     rainbow (3.1.1)
     rubocop (0.76.0)
       jaro_winkler (~> 1.5.1)
@@ -25,7 +25,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  rack (= 2.1.4)
+  rack (= 2.2.8.1)
   rubocop (= 0.76.0)
   toml-rb (= 2.1.0)
 
