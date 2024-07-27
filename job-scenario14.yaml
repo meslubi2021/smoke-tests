@@ -1,0 +1,25 @@
+job:
+  package-manager: nuget
+  allowed-updates:
+      - update-type: all
+  dependencies:
+      - System.Collections.Immutable
+  ignore-conditions:
+      - dependency-name: System.Collections.Immutable
+        source: ./nuget/tests/transitive-pinning.yaml
+        version-requirement: '>8.0.0'
+  security-advisories:
+      - dependency-name: System.Collections.Immutable
+        affected-versions:
+          - < 8.0.0
+        patched-versions:
+          - 8.0.0
+        unaffected-versions: []
+  security-updates-only: true
+  source:
+      provider: github
+      repo: dependabot/smoke-tests
+      directory: /nuget-dependency-resolution/scenario14/
+      commit: 5004589fd58bf76a2856aefdb75fb7703e8ae28c
+  experiments:
+      nuget_native_analysis: true
