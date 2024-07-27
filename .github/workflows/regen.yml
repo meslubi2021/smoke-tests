@@ -1,0 +1,63 @@
+name: Regenerate test output
+
+on:  # yamllint disable-line rule:truthy
+  workflow_dispatch:
+    inputs:
+      git-ref:
+        description: git ref
+        required: true
+        default: main
+      test_name:
+        description: The test name (e.g. go-group-rules)
+        required: true
+
+jobs:
+  regen:
+    runs-on: ubuntu-latest
+    name: Regen ${{ inputs.test_name }}
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download CLI
+        run: |
+          gh release download --repo dependabot/cli -p "*linux-amd64.tar.gz"
+          tar xzvf *.tar.gz >/dev/null 2>&1
+          ./dependabot --version
+
+      - name: Regen ${{ inputs.test_name }}
+        env:
+          LOCAL_GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./dependabot test -f=tests/smoke-${{ inputs.test_name }}.yaml -o tests/smoke-${{ inputs.test_name }}.yaml
+
+      - name: Upload changed test
+        uses: actions/upload-artifact@v3
+        with:
+          name: smoke-${{ inputs.test_name }}.yaml
+          path: tests/smoke-${{ inputs.test_name }}.yaml
+
+  create_pr:
+    needs: regen
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v3
+        with:
+          name: smoke-${{ inputs.test_name }}.yaml
+          path: tests/smoke-${{ inputs.test_name }}.yaml
+      - name: Commit changes and create PR
+        run: |
+            git config --global user.email "${{ github.triggering_actor }}@github.com"
+            git config --global user.name "${{ github.triggering_actor }}"
+            git add tests/smoke-${{ inputs.test_name }}.yaml
+            git checkout -b regen-${{ inputs.test_name }}-${{ github.run_number }}
+            git commit -m "Regenerate ${{ inputs.test_name }} test output"
+            git push origin regen-${{ inputs.test_name }}-${{ github.run_number }}
+            gh pr create --title "Regenerate ${{ inputs.test_name }} test output" \
+               --body "Requested by @${{ github.triggering_actor }}"
